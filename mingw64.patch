@@ -1,66 +1,42 @@
-diff -ruN XQilla-2.3.3/include/xqilla/framework/XQillaExport.hpp XQilla-2.3.3.new/include/xqilla/framework/XQillaExport.hpp
---- XQilla-2.3.3/include/xqilla/framework/XQillaExport.hpp	2015-05-18 19:38:59.000000000 +0200
-+++ XQilla-2.3.3.new/include/xqilla/framework/XQillaExport.hpp	2018-04-25 19:31:36.398813700 +0200
+diff -upr XQilla-2.3.4.old/include/xqilla/framework/XQillaExport.hpp XQilla-2.3.4/include/xqilla/framework/XQillaExport.hpp
+--- XQilla-2.3.4.old/include/xqilla/framework/XQillaExport.hpp	2018-09-05 20:16:40 +0000
++++ XQilla-2.3.4/include/xqilla/framework/XQillaExport.hpp	2018-09-05 20:35:53 +0000
 @@ -48,7 +48,7 @@
   * XQILLA_API functions as being imported from a DLL, wheras this DLL
   * sees symbols defined with this macro as being exported.
   */
--#if defined(WIN32) && !defined(__CYGWIN__)
+-#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW__)
 +#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)
  #  if !defined(XQILLA_API)
  #    if defined(XQILLA_APIS)
  #      define XQILLA_API __declspec(dllexport)
-diff -ruN XQilla-2.3.3/src/functions/FunctionSerializeJSON.cpp XQilla-2.3.3.new/src/functions/FunctionSerializeJSON.cpp
---- XQilla-2.3.3/src/functions/FunctionSerializeJSON.cpp	2015-05-18 19:39:00.000000000 +0200
-+++ XQilla-2.3.3.new/src/functions/FunctionSerializeJSON.cpp	2018-04-25 19:39:22.512980600 +0200
+diff -upr XQilla-2.3.4.old/src/functions/FunctionSerializeJSON.cpp XQilla-2.3.4/src/functions/FunctionSerializeJSON.cpp
+--- XQilla-2.3.4.old/src/functions/FunctionSerializeJSON.cpp	2018-09-05 20:16:41 +0000
++++ XQilla-2.3.4/src/functions/FunctionSerializeJSON.cpp	2018-09-05 20:36:10 +0000
 @@ -20,7 +20,7 @@
  #include "../config/xqilla_config.h"
  
  #include <stdio.h> // for sprintf
--#if defined(WIN32) && !defined(__CYGWIN__)
+-#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW__)
 +#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)
  #define snprintf _snprintf
  #endif
  
-diff -ruN XQilla-2.3.3/src/parser/XQParser.cpp XQilla-2.3.3.new/src/parser/XQParser.cpp
---- XQilla-2.3.3/src/parser/XQParser.cpp	2015-07-08 16:33:25.000000000 +0200
-+++ XQilla-2.3.3.new/src/parser/XQParser.cpp	2018-04-25 19:39:59.474308800 +0200
-@@ -721,7 +721,7 @@
- #line 20 "../src/parser/XQParser.y"
- 
- 
--#if defined(WIN32) && !defined(__CYGWIN__)
-+#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)
- // turn off the warnings "switch statement contains 'default' but no 'case' labels"
- //                       "'yyerrlab1' : unreferenced label"
- #pragma warning(disable : 4065 4102)
-diff -ruN XQilla-2.3.3/src/utils/DateUtils.cpp XQilla-2.3.3.new/src/utils/DateUtils.cpp
---- XQilla-2.3.3/src/utils/DateUtils.cpp	2015-05-18 19:39:00.000000000 +0200
-+++ XQilla-2.3.3.new/src/utils/DateUtils.cpp	2018-04-25 19:40:30.000829900 +0200
+diff -upr XQilla-2.3.4.old/src/utils/DateUtils.cpp XQilla-2.3.4/src/utils/DateUtils.cpp
+--- XQilla-2.3.4.old/src/utils/DateUtils.cpp	2018-09-05 20:16:44 +0000
++++ XQilla-2.3.4/src/utils/DateUtils.cpp	2018-09-06 10:12:43 +0000
 @@ -22,7 +22,7 @@
  #include <math.h>
  #include <climits>
  #include <stdio.h> // for sprintf
--#if defined(WIN32) && !defined(__CYGWIN__)
+-#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW__)
 +#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)
  #define snprintf _snprintf
  #endif
  
-diff -ruN XQilla-2.3.3/src/utils/XPath2Utils.cpp XQilla-2.3.3.new/src/utils/XPath2Utils.cpp
---- XQilla-2.3.3/src/utils/XPath2Utils.cpp	2015-05-18 19:39:00.000000000 +0200
-+++ XQilla-2.3.3.new/src/utils/XPath2Utils.cpp	2018-04-25 19:40:49.505050900 +0200
-@@ -40,7 +40,7 @@
- 
- #include <xqilla/mapm/m_apm.h>
- 
--#if defined(WIN32) && !defined(__CYGWIN__)
-+#if defined(WIN32) && !defined(__CYGWIN__) && !defined(__MINGW32__)
- #define snprintf _snprintf
- #endif
- 
-diff -ruN XQilla-2.3.3/src/yajl/yajl_common.h XQilla-2.3.3.new/src/yajl/yajl_common.h
---- XQilla-2.3.3/src/yajl/yajl_common.h	2015-05-18 19:39:00.000000000 +0200
-+++ XQilla-2.3.3.new/src/yajl/yajl_common.h	2018-04-25 19:41:59.880001500 +0200
+diff -upr XQilla-2.3.4.old/src/yajl/yajl_common.h XQilla-2.3.4/src/yajl/yajl_common.h
+--- XQilla-2.3.4.old/src/yajl/yajl_common.h	2018-09-05 20:16:42 +0000
++++ XQilla-2.3.4/src/yajl/yajl_common.h	2018-09-05 20:38:07 +0000
 @@ -38,7 +38,7 @@
  /* msft dll export gunk.  To build a DLL on windows, you
   * must define WIN32, YAJL_SHARED, and YAJL_BUILD.  To use a shared
@@ -70,15 +46,15 @@ diff -ruN XQilla-2.3.3/src/yajl/yajl_common.h XQilla-2.3.3.new/src/yajl/yajl_com
  #  ifdef YAJL_BUILD
  #    define YAJL_API __declspec(dllexport)
  #  else
-diff -ruN XQilla-2.3.3/tests/xmark/xmark.cpp XQilla-2.3.3.new/tests/xmark/xmark.cpp
---- XQilla-2.3.3/tests/xmark/xmark.cpp	2015-05-18 19:38:46.000000000 +0200
-+++ XQilla-2.3.3.new/tests/xmark/xmark.cpp	2018-04-25 19:53:53.935045800 +0200
-@@ -69,6 +69,8 @@
+diff -upr XQilla-2.3.4.old/tests/xmark/xmark.cpp XQilla-2.3.4/tests/xmark/xmark.cpp
+--- XQilla-2.3.4.old/tests/xmark/xmark.cpp	2018-09-05 20:16:38 +0000
++++ XQilla-2.3.4/tests/xmark/xmark.cpp	2018-09-06 09:52:35 +0000
+@@ -67,7 +67,7 @@ string timestamp(string &dateTime)
+   time(&tt);
+ 
    struct tm *tm_p;
- #ifdef _MSC_VER   
+-#ifdef _MSC_VER   
++#if defined(_MSC_VER) || defined(__MINGW32__)
    tm_p = localtime(&tt);
-+#elif __MINGW32__
-+  tm_p = localtime(&tt);
  #else
    struct tm tm;
-   tm_p = &tm;
